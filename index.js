@@ -1,16 +1,31 @@
 class Product{
-    name;
-    prices;
+    #name;
+    #price;
     category;
-    discription;
+    description;
     rating;
 
     constructor(productName, productPrice, productCategory, productDescription, productRating) {
-        this.name = productName;
+        this.#name = productName;
+        if(productPrice > 0 && typeof(productPrice) === "number"){
+            this.#price = productPrice;
+        }
         this.category = productCategory;
         this.description = productDescription;
         this.rating = productRating;
     }
+        getPrice() {
+            return this.#price;
+        }
+
+        setPrice(p) {
+            if (p > 0) {
+                this.#price = p;
+            } else {
+                console.log("Invalid price");
+            }
+        }
+
 
         addToCart(){
             console.log("Product added to cart");
@@ -19,7 +34,7 @@ class Product{
             console.log("Product removed from cart");
         }
         displayProduct() {
-        console.log("Product displayed");
+            console.log("Product displayed", this.#name, this.#price, this.category, this.description, this.rating);
         }
          
         buyProduct() {
@@ -30,3 +45,4 @@ class Product{
 let iphone = new Product("Iphone 11", 900, "Electronics", "Apple Iphone 11", 4.5);
 
 console.log(iphone);
+iphone.displayProduct();
